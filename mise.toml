@@ -6,6 +6,7 @@ description = "Install or update my tmux configuration"
 run = '''
 #!/usr/bin/env bash
 set -euo pipefail
+mise use --global conda:git@latest
 installer="$(mktemp)"
 trap 'rm -f "$installer"' EXIT
 curl -fsSL https://raw.githubusercontent.com/Mrchazaaa/tmux-config/master/install.sh -o "$installer"

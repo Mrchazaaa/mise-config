@@ -29,3 +29,11 @@ if [[ -t 2 ]]; then
 else
   mise run setup
 fi
+
+bashrc="$HOME/.bashrc"
+activation='eval "$(mise activate bash)"'
+if [[ ! -f "$bashrc" ]] || ! grep -Fqx "$activation" "$bashrc"; then
+  printf '\n%s\n%s\n' 'export PATH="$HOME/.local/bin:$PATH"' "$activation" >> "$bashrc"
+  printf 'Added mise activation to %s.\n' "$bashrc"
+fi
+printf 'Open a new Bash shell or run source ~/.bashrc to activate mise.\n'
